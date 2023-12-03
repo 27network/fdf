@@ -6,16 +6,19 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/10/31 01:07:21 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/03 00:51:27 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	so_long
-NAME_BONUS		=	so_long_bonus
+NAME			=	fdf
+NAME_BONUS		=	$(NAME)_bonus
 
 SRC				=	main.c
 SRC_BONUS		=	main.c
+
 SRC_DIR			=	src
+SRC_BONUS_DIR	=	src_bonus
+SRC_BONUS		:= 	$(addprefix $(SRC_BONUS_DIR)/, $(SRC_BONUS:.c=_bonus.c))
 SRC				:=	$(addprefix $(SRC_DIR)/, $(SRC))
 
 OBJ				= 	$(SRC:.c=.o)
@@ -30,7 +33,7 @@ LIBFT_DIR		=	libft
 LIBFT			=	$(LIBFT_DIR)/build/output/libft.so
 
 CC				=	clang
-CFLAGS			= 	-Wall -Wextra -Werror
+CFLAGS			= 	-Wall -Wextra -Werror -g3
 COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -I $(LIBFT_DIR)/$(INCLUDE_DIR)
 
 #
@@ -44,13 +47,13 @@ $(NAME):		libft mlx $(OBJ)
 
 bonus:			$(NAME_BONUS)
 
-$(NAME_BONUS):	libft mlx $(OBJ) $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(COPTS) -DSL_BONUS=1 -o $(NAME_BONUS) $(OBJ) $(LIBFT) $(MLX)
+$(NAME_BONUS):	libft mlx $(OBJ_BONUS)
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX)
 
 libft:	$(LIBFT)
 
 $(LIBFT):
-	make -j$(shell nproc) -C $(LIBFT_DIR) all
+	make -j$(shell nproc) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
 
 mlx:	$(MLX)
 

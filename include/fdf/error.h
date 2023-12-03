@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 02:42:30 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/10/31 03:32:20 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/03 00:56:51 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/03 01:13:53 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef ERROR_H
+# define ERROR_H
 
-# define PROGRAM_TITLE "so_long"
-
-# include <ft/error.h>
-# include <ft/string/parse.h>
-# include <ft/string.h>
-# include <mlx.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_map
+typedef enum e_fdf_error
 {
-	size_t	width;
-	size_t	height;
-	t_list	*contents;
-}	t_map;
+	FDF_OK = 0,
+	FDF_MAP_INVALID_SIZE,
+	FDF_MAP_INVALID_Z_VALUE,
+	FDF_MAP_INVALID_COLOR_VALUE,
+	FDF_MAP_INVALID_FILE,
+	FDF_MLX_INIT_FAIL
+}	t_fdf_error;
 
-/* Map Parsing */
-t_error	ft_parse_map(t_map *map, char *file_path);
+t_fdf_error	fdf_ok(void);
 
-#endif // SO_LONG_H
+#endif // ERROR_H
