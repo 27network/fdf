@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/03 00:51:27 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/04 16:53:24 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ LIBFT			=	$(LIBFT_DIR)/build/output/libft.so
 
 CC				=	clang
 CFLAGS			= 	-Wall -Wextra -Werror -g3
-COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -I $(LIBFT_DIR)/$(INCLUDE_DIR)
+COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -lSDL2 -I $(LIBFT_DIR)/$(INCLUDE_DIR)
 
 #
 # Rules
@@ -64,9 +64,11 @@ $(MLX):
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@
 
 clean:
+	make -C $(MLX_DIR) clean
 	$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean:			clean
+	make -C $(MLX_DIR) fclean
 	$(RM) $(NAME) $(NAME_BONUS)
 
 re:				fclean all
