@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 01:08:10 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/03 01:09:54 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:19:14 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	fdf_map_free(t_map *map)
 		free(map->z_matrix);
 	if (map->color_matrix)
 		free(map->color_matrix);
-	free(map);
 }

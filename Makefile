@@ -6,14 +6,18 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/04 16:53:24 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/06 17:57:00 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fdf
 NAME_BONUS		=	$(NAME)_bonus
 
-SRC				=	main.c
+SRC				=	map/fdf_map_free.c \
+					map/fdf_map_parse.c \
+					fdf_strerror.c \
+					main.c
+
 SRC_BONUS		=	main.c
 
 SRC_DIR			=	src
@@ -30,11 +34,11 @@ MLX_DIR			=	MacroLibX
 MLX				=	$(MLX_DIR)/libmlx.so
 
 LIBFT_DIR		=	libft
-LIBFT			=	$(LIBFT_DIR)/build/output/libft.so
+LIBFT			=	$(LIBFT_DIR)/build/output/libft.a
 
 CC				=	clang
 CFLAGS			= 	-Wall -Wextra -Werror -g3
-COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -lSDL2 -I $(LIBFT_DIR)/$(INCLUDE_DIR)
+COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -I $(LIBFT_DIR)/$(INCLUDE_DIR)
 
 #
 # Rules
@@ -43,12 +47,12 @@ COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -lSDL2 -I $(LIBFT_DIR
 all:			$(NAME)
 
 $(NAME):		libft mlx $(OBJ)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2
 
 bonus:			$(NAME_BONUS)
 
 $(NAME_BONUS):	libft mlx $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2
 
 libft:	$(LIBFT)
 
@@ -64,10 +68,12 @@ $(MLX):
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@
 
 clean:
+	make -C $(LIBFT_DIR) clean
 	make -C $(MLX_DIR) clean
 	$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean:			clean
+	make -C $(LIBFT_DIR) fclean
 	make -C $(MLX_DIR) fclean
 	$(RM) $(NAME) $(NAME_BONUS)
 
