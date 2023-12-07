@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:40:19 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/06 22:21:00 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:55:38 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*fdf_strerror(t_fdf_error err)
 	[FDF_MAP_INVALID_EXT] = "Invalid extension",
 	[FDF_MAP_INVALID_SIZE] = "Invalid size",
 	[FDF_MAP_PARSE_ERROR] = "Parsing error",
-	[FDF_MAP_INVALID_Z_VALUE] = "Invalid Z value",
-	[FDF_MAP_INVALID_COLOR_VALUE] = "Invalid color value",
+	[FDF_MAP_INVALID_VALUE] = "Invalid value",
 	[FDF_MAP_INVALID_FILE] = "Invalid file",
 	[FDF_MLX_INIT_FAIL] = "MLX died"
 	};

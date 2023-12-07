@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   fdf_mlx_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 00:56:51 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/07 13:04:27 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/07 14:42:52 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/07 15:38:57 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <fdf/minilibx.h>
 
-typedef enum e_fdf_error
+void	fdf_mlx_init(t_map *map)
 {
-	FDF_OK = 0,
-	FDF_ALLOC_ERROR,
-	FDF_MAP_INVALID_EXT,
-	FDF_MAP_INVALID_SIZE,
-	FDF_MAP_PARSE_ERROR,
-	FDF_MAP_INVALID_VALUE,
-	FDF_MAP_INVALID_FILE,
-	FDF_MLX_INIT_FAIL
-}	t_fdf_error;
+	t_mlx_container	data;
 
-char	*fdf_strerror(t_fdf_error err);
-
-#endif // ERROR_H
+	(void)map;
+	data.mlx = mlx_init();
+	data.window = mlx_new_window(data.mlx, 400, 400, PROGRAM_TITLE);
+	mlx_destroy_window(data.mlx, data.window);
+	mlx_destroy_display(data.mlx);
+}

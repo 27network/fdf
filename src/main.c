@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 01:07:33 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/06 21:54:57 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:19:07 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fdf/defaults.h>
 #include <fdf/error.h>
 #include <fdf/map.h>
-#include <fdf/mlx.h>
+#include <fdf/minilibx.h>
 
 int	main(int ac, char *av[])
 {
@@ -33,8 +33,10 @@ int	main(int ac, char *av[])
 	error = fdf_map_parse(av[1], &map);
 	if (error != FDF_OK)
 		ft_dprintf(2, PROGRAM_TITLE": Invalid map: %s.\n", fdf_strerror(error));
-	//else
-	//	fdf_mlx_init(&map);
+	else
+	{
+		fdf_mlx_init(&map);
+	}
 	fdf_map_free(&map);
 	return (0);
 }
