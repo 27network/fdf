@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/07 15:16:36 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/07 15:47:50 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ $(LIBFT):
 	make -j$(shell nproc) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
 
 $(MLX):
-	make -j$(shell nproc) -C $(MLX_DIR) all
+	make -j$(shell nproc) -C $(MLX_DIR) all MODE="debug"
 
 %.o:	%.c
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@
