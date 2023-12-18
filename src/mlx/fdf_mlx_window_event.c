@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   fdf_mlx_window_event.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 00:56:51 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/18 19:30:48 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/18 19:31:18 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/18 19:31:51 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <fdf/minilibx.h>
 
-typedef enum e_fdf_error
+void	fdf_mlx_window_event(int event, t_mlx_container *data)
 {
-	FDF_OK = 0,
-	FDF_ALLOC_ERROR,
-	FDF_MAP_INVALID_EXT,
-	FDF_MAP_INVALID_SIZE,
-	FDF_MAP_PARSE_ERROR,
-	FDF_MAP_INVALID_VALUE,
-	FDF_MAP_INVALID_FILE,
-	FDF_MLX_INIT_FAIL
-}	t_fdf_error;
-
-char	*fdf_strerror(t_fdf_error err);
-
-#endif // ERROR_H
+	if (event == 0)
+		mlx_loop_end(data->mlx);
+}

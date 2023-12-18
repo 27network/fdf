@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 01:07:33 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/07 15:19:07 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:08:45 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int	main(int ac, char *av[])
 	if (error != FDF_OK)
 		ft_dprintf(2, PROGRAM_TITLE": Invalid map: %s.\n", fdf_strerror(error));
 	else
-	{
 		fdf_mlx_init(&map);
-	}
 	fdf_map_free(&map);
 	return (0);
 }

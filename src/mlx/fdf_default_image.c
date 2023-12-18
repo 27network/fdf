@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   fdf_default_image.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 00:56:51 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/18 19:30:48 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/19 00:33:59 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/19 00:39:15 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <fdf/minilibx.h>
 
-typedef enum e_fdf_error
+void	*fdf_empty_image(t_mlx_container *data, int width, int height)
 {
-	FDF_OK = 0,
-	FDF_ALLOC_ERROR,
-	FDF_MAP_INVALID_EXT,
-	FDF_MAP_INVALID_SIZE,
-	FDF_MAP_PARSE_ERROR,
-	FDF_MAP_INVALID_VALUE,
-	FDF_MAP_INVALID_FILE,
-	FDF_MLX_INIT_FAIL
-}	t_fdf_error;
+	void		*img;
+	int			x;
+	int			y;
 
-char	*fdf_strerror(t_fdf_error err);
-
-#endif // ERROR_H
+	img = mlx_new_image(data->mlx, width, height);
+	if (!img)
+		return (NULL);
+	x = 0;
+	y = 0;
+	while (y < height)
+	{
+		while (x < width)
+		{
+			mlx_set_image_pixel(data->mlx, img, x, y, 0xFF000000);
+			x++;
+		}
+		y++;
+	}
+	return (img);
+}

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 00:56:51 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/18 19:30:48 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/18 23:06:07 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/19 00:31:42 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef COLOR_H
+# define COLOR_H
 
-typedef enum e_fdf_error
+# include <stdint.h>
+
+typedef union u_colorpack
 {
-	FDF_OK = 0,
-	FDF_ALLOC_ERROR,
-	FDF_MAP_INVALID_EXT,
-	FDF_MAP_INVALID_SIZE,
-	FDF_MAP_PARSE_ERROR,
-	FDF_MAP_INVALID_VALUE,
-	FDF_MAP_INVALID_FILE,
-	FDF_MLX_INIT_FAIL
-}	t_fdf_error;
+	uint32_t	value;
+	uint8_t		a;
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	uint8_t		argb[4];
+}	t_colorpack;
 
-char	*fdf_strerror(t_fdf_error err);
+t_colorpack	fdf_colorpack_int(int argv);
+t_colorpack	fdf_colorpack_bytes(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
 
-#endif // ERROR_H
+#endif // COLOR_H
