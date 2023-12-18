@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/12 15:17:09 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/18 16:02:01 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,10 +56,10 @@ $(NAME_BONUS):	$(LIBFT) $(MLX) $(OBJ_BONUS)
 	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2
 
 $(LIBFT):
-	make -j$(shell nproc) -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
+	make -j -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
 
 $(MLX):
-	make -j$(shell nproc) -C $(MLX_DIR) all
+	make -j -C $(MLX_DIR) all
 
 %.o:	%.c
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@
