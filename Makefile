@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/18 17:59:16 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/20 11:59:08 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME_BONUS		=	$(NAME)_bonus
 SRC				=	map/fdf_map_free.c \
 					map/fdf_map_parse.c \
 					mlx/fdf_mlx_init.c \
+					mlx/fdf_default_image.c \
 					mlx/fdf_mlx_key_pressed.c \
 					mlx/fdf_mlx_update.c \
 					mlx/fdf_mlx_window_event.c \
@@ -62,7 +63,7 @@ $(LIBFT):
 	make -j -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
 
 $(MLX):
-	make -j -C $(MLX_DIR) all
+	make -j -C $(MLX_DIR) all DEBUG=true
 
 %.o:	%.c
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@

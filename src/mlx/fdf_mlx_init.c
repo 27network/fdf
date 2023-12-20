@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:42:52 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/19 00:51:08 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/20 11:37:07 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static int	fdf_wrap_window(int event, void *data)
 	return (0);
 }
 
-static void	fdf_kickstart(t_mlx_container *data)
+static t_fdf_error	fdf_kickstart(t_mlx_container *data)
 {
+	t_fdf_error	err;
+
+	err = FDF_MLX_INIT_FAIL;
 	if (data->img)
 	{
 		mlx_on_event(data->mlx, data->window, MLX_KEYDOWN, fdf_wrap_window,
@@ -40,9 +43,11 @@ static void	fdf_kickstart(t_mlx_container *data)
 			&data);
 		mlx_loop_hook(data->mlx, fdf_wrap_update, &data);
 		mlx_loop(data->mlx);
+		err = FDF_OK;
 	}
 	mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
+	return (err);
 }
 
 t_fdf_error	fdf_mlx_init(t_map *map)
@@ -67,6 +72,5 @@ t_fdf_error	fdf_mlx_init(t_map *map)
 		return (FDF_MLX_INIT_FAIL);
 	data.img = fdf_empty_image(&data, w, h);
 	data.height_factor = 1.;
-	fdf_kickstart(&data);
-	return (FDF_OK);
+	return (fdf_kickstart(&data));
 }
