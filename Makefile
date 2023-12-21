@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/20 13:35:05 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/21 22:43:58 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,12 @@ NAME_BONUS		=	$(NAME)_bonus
 
 SRC				=	map/fdf_map_free.c \
 					map/fdf_map_parse.c \
-					mlx/fdf_mlx_init.c \
-					mlx/fdf_default_image.c \
-					mlx/fdf_mlx_key_pressed.c \
-					mlx/fdf_mlx_update.c \
-					mlx/fdf_mlx_window_event.c \
+					render/mlx/fdf_mlx_init.c \
+					render/mlx/fdf_default_image.c \
+					render/mlx/fdf_mlx_key_pressed.c \
+					render/mlx/fdf_mlx_update.c \
+					render/mlx/fdf_mlx_window_event.c \
+					render/vertex/fdf_vertex_builder.c \
 					fdf_strerror.c \
 					main.c
 

@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer.h                                         :+:      :+:    :+:   */
+/*   fdf_vb_calculate_edges.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 19:42:44 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/18 19:45:03 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/21 23:45:13 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/22 00:13:39 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include <fdf/render/vertex.h>
 
-# include <ft/data/list.h>
-# include <stdint.h>
-
-# ifndef FDF_VERTEX_TYPE
-#  define FDF_VERTEX_TYPE int32_t
-# endif // FDF_VERTEX_TYPE
-
-typedef struct s_fdf_vertex
+static size_t	fdf_vb_n_edges_for(t_vertex_buffer *vb)
 {
-	FDF_VERTEX_TYPE	x;
-	FDF_VERTEX_TYPE	y;
-	FDF_VERTEX_TYPE	z;
-}	t_fdf_point;
+	(void)vb;
+}
 
-typedef struct s_fdf_cuboid
+static size_t	fdf_vb_n_edges(t_vertex_buffer *vb)
 {
-	t_list	*vertex_table;
-	t_list	*edge_table;
-}	t_fdf_cuboid;
+	(void)vb;
+}
 
-#endif // RENDERER_H
+t_fdf_error	fdf_vb_calculate_edges(t_vertex_buffer *vb)
+{
+	t_fdf_error	err;
+
+	(void)vb;
+	err = FDF_OK;
+	return (err);
+}
