@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 01:10:27 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/07 14:23:24 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/23 05:54:35 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/**
+ * TODO: Add error handling for invalid values for color_matrix parsing
+ */
 static t_fdf_error	fdf_process_line_val(
 		char *value,
 		size_t val_idx,
@@ -120,7 +123,7 @@ static t_fdf_error	fdf_map_parse_size(int fd, t_map *map)
 		free(line);
 	}
 	map->height = y;
-	if (invalid)
+	if (invalid || map->width <= 1 || map->height <= 1)
 		return (FDF_MAP_INVALID_SIZE);
 	return (FDF_OK);
 }

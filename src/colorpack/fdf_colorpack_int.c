@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_vb_calculate_edges.c                           :+:      :+:    :+:   */
+/*   fdf_colorpack_int.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 23:45:13 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/22 00:13:39 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/23 02:43:53 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/23 02:44:26 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/render/vertex.h>
+#include <fdf/color.h>
 
-static size_t	fdf_vb_n_edges_for(t_vertex_buffer *vb)
+t_colorpack	fdf_colorpack_int(int color)
 {
-	(void)vb;
-}
+	t_colorpack	pack;
 
-static size_t	fdf_vb_n_edges(t_vertex_buffer *vb)
-{
-	(void)vb;
-}
-
-t_fdf_error	fdf_vb_calculate_edges(t_vertex_buffer *vb)
-{
-	t_fdf_error	err;
-
-	(void)vb;
-	err = FDF_OK;
-	return (err);
+	pack.value = (uint32_t)color;
+	return (pack);
 }

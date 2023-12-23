@@ -6,21 +6,24 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/21 22:43:58 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/23 16:01:26 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fdf
 NAME_BONUS		=	$(NAME)_bonus
 
-SRC				=	map/fdf_map_free.c \
+SRC				=	colorpack/fdf_colorpack_bytes.c \
+					colorpack/fdf_colorpack_int.c \
+					map/fdf_map_free.c \
 					map/fdf_map_parse.c \
 					render/mlx/fdf_mlx_init.c \
 					render/mlx/fdf_default_image.c \
 					render/mlx/fdf_mlx_key_pressed.c \
 					render/mlx/fdf_mlx_update.c \
 					render/mlx/fdf_mlx_window_event.c \
-					render/vertex/fdf_vertex_builder.c \
+					render/vertex/fdf_vb_build.c \
+					render/vertex/fdf_vb_free.c \
 					fdf_strerror.c \
 					main.c
 
@@ -53,18 +56,18 @@ COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -I $(LIBFT_DIR)/$(INC
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(MLX) $(OBJ)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -fuse-ld=mold
 
 bonus:			$(NAME_BONUS)
 
 $(NAME_BONUS):	$(LIBFT) $(MLX) $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2 -fuse-ld=mold
 
 $(LIBFT):
-	make -j -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
+	mold -run make -j -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all
 
 $(MLX):
-	make -j -C $(MLX_DIR) all
+	mold -run make -j -C $(MLX_DIR) all
 
 %.o:	%.c
 	$(CC) $(CFLAGS) $(COPTS) -c $< -o $@

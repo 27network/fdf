@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:40:19 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/07 13:55:38 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/23 02:45:19 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*fdf_strerror(t_fdf_error err)
 	[FDF_MAP_PARSE_ERROR] = "Parsing error",
 	[FDF_MAP_INVALID_VALUE] = "Invalid value",
 	[FDF_MAP_INVALID_FILE] = "Invalid file",
-	[FDF_MLX_INIT_FAIL] = "MLX died"
+	[FDF_MLX_INIT_FAIL] = "MLX died, as usual"
 	};
 
 	return (errors[err]);

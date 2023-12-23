@@ -6,11 +6,11 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:42:52 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/20 15:33:53 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/23 05:25:57 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/minilibx.h>
+#include <fdf/render/minilibx.h>
 
 static int	fdf_wrap_update(void *data)
 {
@@ -51,11 +51,10 @@ static t_fdf_error	fdf_kickstart(t_mlx_container *data)
 	return (err);
 }
 
-t_fdf_error	fdf_mlx_init(t_map *map)
+t_fdf_error	fdf_mlx_init(t_vertex_buffer *vb)
 {
 	t_mlx_container	data;
 
-	data.map = map;
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (FDF_MLX_INIT_FAIL);
@@ -66,6 +65,7 @@ t_fdf_error	fdf_mlx_init(t_map *map)
 	if (!data.window)
 		return (FDF_MLX_INIT_FAIL);
 	data.img = fdf_empty_image(&data, FDF_WINDOW_WIDTH, FDF_WINDOW_HEIGHT);
+	data.vb = vb;
 	data.height_factor = 1.;
 	return (fdf_kickstart(&data));
 }

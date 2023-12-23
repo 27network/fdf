@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   fdf_colorpack_bytes.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 23:06:07 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/23 02:42:37 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/23 02:44:33 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/23 02:44:49 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include <fdf/color.h>
 
-# include <stdint.h>
-
-typedef union u_colorpack
+t_colorpack	fdf_colorpack_bytes(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 {
-	uint32_t	value;
-	uint8_t		a;
-	uint8_t		r;
-	uint8_t		g;
-	uint8_t		b;
-	uint8_t		argb[4];
-}	t_colorpack;
+	t_colorpack	pack;
 
-t_colorpack	fdf_colorpack_int(int color);
-t_colorpack	fdf_colorpack_bytes(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
-
-#endif // COLOR_H
+	pack.a = a;
+	pack.r = r;
+	pack.g = g;
+	pack.b = b;
+	return (pack);
+}
