@@ -6,29 +6,11 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:42:52 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/23 05:25:57 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/24 05:34:45 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf/render/minilibx.h>
-
-static int	fdf_wrap_update(void *data)
-{
-	fdf_mlx_update((t_mlx_container *) data);
-	return (0);
-}
-
-static int	fdf_wrap_key(int key, void *data)
-{
-	fdf_mlx_key_pressed(key, (t_mlx_container *) data);
-	return (0);
-}
-
-static int	fdf_wrap_window(int event, void *data)
-{
-	fdf_mlx_window_event(event, (t_mlx_container *) data);
-	return (0);
-}
 
 static t_fdf_error	fdf_kickstart(t_mlx_container *data)
 {
@@ -37,11 +19,7 @@ static t_fdf_error	fdf_kickstart(t_mlx_container *data)
 	err = FDF_MLX_INIT_FAIL;
 	if (data->img)
 	{
-		mlx_on_event(data->mlx, data->window, MLX_KEYDOWN,
-			fdf_wrap_key, data);
-		mlx_on_event(data->mlx, data->window, MLX_WINDOW_EVENT,
-			fdf_wrap_window, data);
-		mlx_loop_hook(data->mlx, fdf_wrap_update, data);
+		fdf_mlx_setup_events(data);
 		mlx_loop(data->mlx);
 		mlx_destroy_image(data->mlx, data->img);
 		err = FDF_OK;
@@ -54,6 +32,7 @@ static t_fdf_error	fdf_kickstart(t_mlx_container *data)
 t_fdf_error	fdf_mlx_init(t_vertex_buffer *vb)
 {
 	t_mlx_container	data;
+	t_camera		camera;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
@@ -67,5 +46,7 @@ t_fdf_error	fdf_mlx_init(t_vertex_buffer *vb)
 	data.img = fdf_empty_image(&data, FDF_WINDOW_WIDTH, FDF_WINDOW_HEIGHT);
 	data.vb = vb;
 	data.height_factor = 1.;
+	fdf_camera_init(&camera);
+	data.camera = &camera;
 	return (fdf_kickstart(&data));
 }

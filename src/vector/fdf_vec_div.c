@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_default_image.c                                :+:      :+:    :+:   */
+/*   fdf_vec_div.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 00:33:59 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:54:30 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/24 04:42:44 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/24 04:54:18 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/render/minilibx.h>
+#include <fdf/render/vector.h>
 
-void	*fdf_empty_image(t_mlx_container *data, int width, int height)
+t_vector	fdf_vec_div(t_vector v, double scalar)
 {
-	void			*img;
-	int				x;
-	int				y;
+	t_vector	v_div;
 
-	img = mlx_new_image(data->mlx, width, height);
-	if (!img)
-		return (NULL);
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			mlx_set_image_pixel(data->mlx, img, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	return (img);
+	v_div.x = v.x / scalar;
+	v_div.y = v.y / scalar;
+	v_div.z = v.z / scalar;
+	return (v_div);
 }

@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 01:10:27 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/23 05:54:35 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/24 04:26:36 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ t_fdf_error	fdf_map_parse(char *file_name, t_map *map)
 	if (ft_strlen(file_name) >= 4
 		&& ft_strcmp(&file_name[ft_strlen(file_name) - 4], FILE_EXTENSION))
 		return (FDF_MAP_INVALID_EXT);
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		return (FDF_MAP_INVALID_FILE);
 	error = fdf_map_parse_size(fd, map);
@@ -147,7 +147,7 @@ t_fdf_error	fdf_map_parse(char *file_name, t_map *map)
 	map->color_matrix = ft_calloc(map->height * map->width, sizeof(int));
 	if (!map->z_matrix || !map->color_matrix)
 		return (FDF_ALLOC_ERROR);
-	fd = open(file_name, O_RDONLY);
+	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		return (FDF_MAP_INVALID_FILE);
 	error = fdf_map_fill(fd, map);

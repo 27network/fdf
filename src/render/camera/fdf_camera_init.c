@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_default_image.c                                :+:      :+:    :+:   */
+/*   fdf_camera_init.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 00:33:59 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:54:30 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/24 04:47:48 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/24 04:55:02 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/render/minilibx.h>
+#include <fdf/render/camera.h>
 
-void	*fdf_empty_image(t_mlx_container *data, int width, int height)
+void	fdf_camera_init(t_camera *camera)
 {
-	void			*img;
-	int				x;
-	int				y;
-
-	img = mlx_new_image(data->mlx, width, height);
-	if (!img)
-		return (NULL);
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			mlx_set_image_pixel(data->mlx, img, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	return (img);
+	camera->position = fdf_vec_from(0, 0, 0);
+	camera->direction = fdf_vec_from(0, 0, 1);
+	camera->rotation = fdf_vec_from(0, 0, 0);
+	camera->focal_length = 10;
 }

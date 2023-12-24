@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_default_image.c                                :+:      :+:    :+:   */
+/*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 00:33:59 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:54:30 by kiroussa         ###   ########.fr       */
+/*   Created: 2023/12/24 05:37:15 by kiroussa          #+#    #+#             */
+/*   Updated: 2023/12/24 05:39:13 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/render/minilibx.h>
+#ifndef HUD_H
+# define HUD_H
 
-void	*fdf_empty_image(t_mlx_container *data, int width, int height)
+# include <fdf/render/minilibx.h>
+
+typedef void	(*t_hud_render)(t_mlx_container *data);
+typedef bool	(*t_hud_onclick)(t_mlx_container *data);
+
+typedef struct s_hud_element
 {
-	void			*img;
-	int				x;
-	int				y;
+	t_hud_render			render;
+	t_hud_onclick			onclick;
+	struct s_hud_element	*children;
+}	t_hud_element;
 
-	img = mlx_new_image(data->mlx, width, height);
-	if (!img)
-		return (NULL);
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-		{
-			mlx_set_image_pixel(data->mlx, img, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	return (img);
-}
+void	fdf_hud_display(t_mlx_container *data);
+
+#endif // HUD_H
