@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:42:44 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/23 05:54:35 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/24 20:50:26 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ typedef struct s_fdf_vertex_buffer
 
 t_fdf_error	fdf_vb_build(t_map *map, t_vertex_buffer *vb);
 void		fdf_vb_free(t_vertex_buffer *vb);
+t_fdf_error	fdf_vb_clone(t_vertex_buffer *vb, t_vertex_buffer **new_vb);
 
 #endif // VERTEX_H

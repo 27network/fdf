@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2023/12/24 05:36:47 by kiroussa         ###   ########.fr        #
+#    Updated: 2023/12/24 21:12:47 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC				=	colorpack/fdf_colorpack_bytes.c \
 					render/mlx/fdf_mlx_update.c \
 					render/mlx/fdf_mlx_window_event.c \
 					render/vertex/fdf_vb_build.c \
+					render/vertex/fdf_vb_clone.c \
 					render/vertex/fdf_vb_free.c \
 					vector/fdf_vec_add.c \
 					vector/fdf_vec_div.c \
