@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 00:53:13 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:32:29 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:48:27 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <fdf/defaults.h>
 # include <fdf/error.h>
 # include <fdf/render/camera.h>
+# define FDF_VB_NORENDER
 # include <fdf/render/vertex.h>
-
+# undef FDF_VB_NORENDER
 # include "mlx.h"
 
 typedef struct s_mlx_container
@@ -27,7 +28,14 @@ typedef struct s_mlx_container
 
 	void			*mlx;
 	void			*window;
-	void			*img;
+	int				width;
+	int				height;
+
+	void			*scene;
+	bool			scene_rendered;
+
+	void			*hud;
+	bool			hud_rendered;
 
 	double			height_factor;
 }	t_mlx_container;
@@ -40,5 +48,7 @@ void		fdf_mlx_window_event(int event, t_mlx_container *data);
 void		fdf_mlx_key_pressed(int keycode, t_mlx_container *data);
 
 void		*fdf_empty_image(t_mlx_container *data, int width, int height);
+void		fdf_clear_image(t_mlx_container *data, void *img, int width,
+				int height);
 
 #endif // MINILIBX_H

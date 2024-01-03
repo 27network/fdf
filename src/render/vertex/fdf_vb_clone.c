@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 20:47:54 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 20:51:49 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 13:57:45 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,25 @@
 #include <ft/mem.h>
 #include <stdlib.h>
 
-static void	fdf_vb_clone0(t_vertex_buffer *vb, t_vertex_buffer **clone)
+t_vertex_buffer	*fdf_vb_clone(t_vertex_buffer *old)
 {
-	size_t	i;
+	t_vertex_buffer	*new;
 
-	i = 0;
-	while (i < vb->vertices_count)
+	new = ft_calloc(sizeof(t_vertex_buffer), 1);
+	if (!new)
+		return (NULL);
+	new->edges = ft_calloc(sizeof(t_fdf_edge), old->edges_count);
+	new->vertices = ft_calloc(sizeof(t_fdf_vertex), old->vertices_count);
+	if (!new->edges || !new->vertices)
 	{
-		(*clone)->vertices[i].x = vb->vertices[i].x;
-		(*clone)->vertices[i].y = vb->vertices[i].y;
-		(*clone)->vertices[i].z = vb->vertices[i].z;
-		(*clone)->vertices[i].color = vb->vertices[i].color;
-		i++;
+		fdf_vb_free(new);
+		free(new);
+		return (NULL);
 	}
-	i = 0;
-	while (i < vb->edges_count)
-	{
-		(*clone)->edges[i].vertex1 = vb->edges[i].vertex1;
-		(*clone)->edges[i].vertex2 = vb->edges[i].vertex2;
-		i++;
-	}
-}
-
-t_fdf_error	fdf_vb_clone(t_vertex_buffer *vb, t_vertex_buffer **clone)
-{
-	if (!vb || !clone)
-		return (FDF_BAD_CODE);
-	*clone = ft_calloc(1, sizeof(t_vertex_buffer));
-	if (!*clone)
-		return (FDF_ALLOC_ERROR);
-	(*clone)->vertices_count = vb->vertices_count;
-	(*clone)->edges_count = vb->edges_count;
-	(*clone)->vertices = ft_calloc(vb->vertices_count, sizeof(t_fdf_vertex));
-	if (!(*clone)->vertices)
-	{
-		free(*clone);
-		*clone = NULL;
-		return (FDF_ALLOC_ERROR);
-	}
-	(*clone)->edges = ft_calloc(vb->edges_count, sizeof(t_fdf_edge));
-	if (!(*clone)->edges)
-	{
-		free((*clone)->vertices);
-		free(*clone);
-		*clone = NULL;
-		return (FDF_ALLOC_ERROR);
-	}
-	fdf_vb_clone0(vb, clone);
-	return (FDF_OK);
+	new->edges_count = old->edges_count;
+	new->vertices_count = old->vertices_count;
+	ft_memcpy(new->edges, old->edges, new->edges_count * sizeof(t_fdf_edge));
+	ft_memcpy(new->vertices, old->vertices,
+		new->vertices_count * sizeof(t_fdf_vertex));
+	return (new);
 }

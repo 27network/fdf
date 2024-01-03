@@ -6,41 +6,36 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:36:46 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 20:40:53 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:15:58 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf/defaults.h>
-#include <fdf/error.h>
+#include <fdf/render/vertex.h>
 #include <fdf/render/hud.h>
 #include <fdf/render/minilibx.h>
-#include <ft/mem.h>
 #include <ft/print.h>
-#include <stdlib.h>
-
-//TODO: apply camera transforms
-static t_vertex_buffer	*fdf_transform(t_vertex_buffer *vb)
-{
-	t_vertex_buffer	*new_vb;
-
-	new_vb = ft_calloc(1, sizeof(t_vertex_buffer));
-	if (fdf_vb_clone(vb, new_vb) != FDF_OK)
-		return (NULL);
-	return (new_vb);
-}
 
 void	fdf_mlx_update(t_mlx_container *data)
 {
-	t_vertex_buffer	*new_vb;
-
-	new_vb = fdf_transform(data->vb);
-	if (new_vb == NULL)
+	if (!data->scene_rendered || !data->hud_rendered)
+		mlx_clear_window(data->mlx, data->window);
+	
+		/*
+	if (!data->scene_rendered && false)
 	{
-		mlx_loop_end(data->mlx);
-		ft_dprintf(2, PROGRAM_TITLE": %s\n", fdf_strerror(FDF_ALLOC_ERROR));
+		ft_printf("Rendering scene...");
+		fdf_clear_image(data, data->scene, data->width, data->height);
+		fdf_vb_render(data);
+		ft_printf(" done!\n");
 	}
-	free(new_vb);
-	mlx_clear_window(data->mlx, data->window);
-	mlx_put_image_to_window(data->mlx, data->window, data->img, 1, 1);
-	fdf_hud_display(data);
+	mlx_put_image_to_window(data->mlx, data->window, data->scene, 0, 0);
+	*/
+	if (!data->hud_rendered)
+	{
+		ft_printf("Rendering hud...");
+		fdf_clear_image(data, data->hud, data->width, data->height);
+		fdf_hud_render(data);
+		ft_printf(" done!\n");
+	}
+	mlx_put_image_to_window(data->mlx, data->window, data->hud, 0, 0);
 }

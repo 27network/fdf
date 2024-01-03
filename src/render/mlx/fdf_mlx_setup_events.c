@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:30:55 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:56:20 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:54:16 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ static int	fdf_wrap_window(int event, void *data)
 static int	fdf_wrap_mousewheel(int button, void *data)
 {
 	if (button == 2)
-		((t_mlx_container *) data)->camera->focal_length += 0.1;
-	if (button == 1)
 		((t_mlx_container *) data)->camera->focal_length -= 0.1;
+	else if (button == 1)
+		((t_mlx_container *) data)->camera->focal_length += 0.1;
+	else
+		return (0);
+	((t_mlx_container *) data)->hud_rendered = false;
+	((t_mlx_container *) data)->scene_rendered = false;
 	return (0);
 }
 

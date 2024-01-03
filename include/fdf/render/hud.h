@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:37:15 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:39:13 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:49:55 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ typedef struct s_hud_element
 	struct s_hud_element	*children;
 }	t_hud_element;
 
-void	fdf_hud_display(t_mlx_container *data);
+void	fdf_hud_render(t_mlx_container *data);
 
 #endif // HUD_H

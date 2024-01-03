@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 00:33:59 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 05:54:30 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:55:29 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 void	*fdf_empty_image(t_mlx_container *data, int width, int height)
 {
 	void			*img;
-	int				x;
-	int				y;
 
 	img = mlx_new_image(data->mlx, width, height);
 	if (!img)
 		return (NULL);
+	fdf_clear_image(data, img, width, height);
+	return (img);
+}
+
+void	fdf_clear_image(t_mlx_container *data, void *img, int width, int height)
+{
+	int	x;
+	int	y;
+
 	y = 0;
 	while (y < height)
 	{
@@ -32,5 +39,4 @@ void	*fdf_empty_image(t_mlx_container *data, int width, int height)
 		}
 		y++;
 	}
-	return (img);
 }
