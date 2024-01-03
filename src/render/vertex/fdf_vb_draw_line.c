@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:00:57 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 15:28:11 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:27:05 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec2i	fdf_vec(int32_t x, int32_t y)
 
 static void	fdf_plot(t_vec2i pos, t_mlx_container *data)
 {
-	mlx_set_image_pixel(data->mlx, data->img, pos.x, pos.y, 0xFFFFFFFF);
+	mlx_set_image_pixel(data->mlx, data->scene, pos.x, pos.y, 0xFFFFFFFF);
 }
 
 static void	fdf_plot_low(
