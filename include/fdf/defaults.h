@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 00:59:01 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/20 15:33:00 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:20:32 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # endif // FILE_EXTENSION
 
 # ifndef FDF_WINDOW_WIDTH
-#  define FDF_WINDOW_WIDTH 700
+#  define FDF_WINDOW_WIDTH 1920
 # endif // FDF_WINDOW_WIDTH
 
 # ifndef FDF_WINDOW_HEIGHT
-#  define FDF_WINDOW_HEIGHT 480
+#  define FDF_WINDOW_HEIGHT 1080
 # endif // FDF_WINDOW_HEIGHT
 
 #endif // DEFAULTS_H

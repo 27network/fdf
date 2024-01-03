@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 00:53:13 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 15:48:27 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:59:46 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ typedef struct s_mlx_container
 	int				height;
 
 	void			*scene;
-	bool			scene_rendered;
-
-	void			*hud;
-	bool			hud_rendered;
+	bool			is_dirty;
 
 	double			height_factor;
 }	t_mlx_container;

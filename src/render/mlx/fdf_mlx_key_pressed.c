@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:35:44 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 15:54:42 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 23:47:30 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,26 @@ void	fdf_mlx_key_pressed(int scancode, t_mlx_container *data)
 	if (scancode == SDL_SCANCODE_ESCAPE)
 		mlx_loop_end(data->mlx);
 	else if (scancode == SDL_SCANCODE_UP)
-		data->camera->focal_length += 1;
+		data->camera->focal_length += .125;
 	else if (scancode == SDL_SCANCODE_DOWN)
-		data->camera->focal_length -= 1;
+		data->camera->focal_length -= .125;
+	else if (scancode == SDL_SCANCODE_W)
+		data->camera->position.y += 2.5;
+	else if (scancode == SDL_SCANCODE_S)
+		data->camera->position.y -= 2.5;
+	else if (scancode == SDL_SCANCODE_D)
+		data->camera->position.x -= 2.5;
+	else if (scancode == SDL_SCANCODE_A)
+		data->camera->position.x += 2.5;
+	else if (scancode == SDL_SCANCODE_F)
+		data->camera->position.z += 0.5;
+	else if (scancode == SDL_SCANCODE_R)
+		data->camera->position.z -= 0.5;
+	else if (scancode == SDL_SCANCODE_P)
+		data->height_factor += .001;
+	else if (scancode == SDL_SCANCODE_O)
+		data->height_factor -= .001;
 	else
 		return ;
-	data->hud_rendered = false;
-	data->scene_rendered = false;
+	data->is_dirty = true;
 }

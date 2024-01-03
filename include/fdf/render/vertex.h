@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:42:44 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 15:28:12 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:42:54 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 typedef struct s_fdf_vertex
 {
-	int32_t		x;
-	int32_t		y;
-	int32_t		z;
+	double		x;
+	double		y;
+	double		z;
 	t_colorpack	color;
 }	t_fdf_vertex;
 
