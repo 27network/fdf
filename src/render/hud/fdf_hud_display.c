@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:36:54 by kiroussa          #+#    #+#             */
-/*   Updated: 2023/12/24 20:47:25 by kiroussa         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:08:07 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fdf_hud_display(t_mlx_container *data)
 
 	if (first)
 	{
-		mlx_set_font_scale(data->mlx, data->window, "font.ttf", 21.0f);
+		mlx_set_font_scale(data->mlx, data->window, "font.ttf", 24.5);
 		first = false;
 	}
 	mlx_string_put(data->mlx, data->window, 10, 20, 0xFFFFFFFF, "HUD");
