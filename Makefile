@@ -6,7 +6,7 @@
 #    By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/06 21:19:50 by kiroussa          #+#    #+#              #
-#    Updated: 2024/01/03 15:28:13 by kiroussa         ###   ########.fr        #
+#    Updated: 2024/01/03 16:29:46 by kiroussa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,10 @@ CFLAGS			= 	-Wall -Wextra -Werror -g3
 COPTS			= 	-I $(INCLUDE_DIR) -I $(MLX_DIR)/$(INCLUDE_DIR)s -I $(LIBFT_DIR)/$(INCLUDE_DIR)
 
 MAKE_CMD		=	make
+LINKER_ARGS		=
 ifneq (, $(shell which mold))
 	MAKE_CMD	:=	mold -run make
+	LINKER_ARGS	:=	-fuse-ld=mold
 endif
 
 # 
@@ -75,12 +77,12 @@ endif
 all:			$(NAME)
 
 $(NAME):		$(LIBFT) $(MLX) $(OBJ)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -lm -fuse-ld=mold
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME) $(OBJ) $(LIBFT) $(MLX) -lSDL2 -lm $(LINKER_ARGS)
 
 bonus:			$(NAME_BONUS)
 
 $(NAME_BONUS):	$(LIBFT) $(MLX) $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2 -lm -fuse-ld=mold
+	$(CC) $(CFLAGS) $(COPTS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT) $(MLX) -lSDL2 -lm $(LINKER_ARGS)
 
 $(LIBFT):
 	$(MAKE_CMD) -j -C $(LIBFT_DIR) CFLAGS="$(CFLAGS)" all

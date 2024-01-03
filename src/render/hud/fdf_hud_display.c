@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:36:54 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 16:12:22 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:28:43 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	fdf_draw_string(char *string, int x, int y, t_mlx_container *data)
 {
-	mlx_string_put(data->mlx, data->window, x + 1, y + 1, 0x000000FF, string);
+//	mlx_string_put(data->mlx, data->window, x + 1, y + 1, 0x000000FF, string);
 	mlx_string_put(data->mlx, data->window, x, y, 0xFFFFFFFF, string);
 }
 
