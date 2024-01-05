@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:35:44 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 23:47:30 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/05 08:34:26 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ void	fdf_mlx_key_pressed(int scancode, t_mlx_container *data)
 {
 	if (scancode == SDL_SCANCODE_ESCAPE)
 		mlx_loop_end(data->mlx);
-	else if (scancode == SDL_SCANCODE_UP)
-		data->camera->focal_length += .125;
 	else if (scancode == SDL_SCANCODE_DOWN)
+		data->camera->focal_length += .125;
+	else if (scancode == SDL_SCANCODE_UP)
+	{
 		data->camera->focal_length -= .125;
+		if (data->camera->focal_length < 0)
+			data->camera->focal_length = 0;
+	}
 	else if (scancode == SDL_SCANCODE_W)
 		data->camera->position.y += 2.5;
 	else if (scancode == SDL_SCANCODE_S)

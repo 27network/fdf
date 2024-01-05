@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:36:46 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 23:49:23 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:04:40 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,38 +35,37 @@ static void	render_debug(t_mlx_container *data)
 	fdf_vb_draw_line(&v1, &v2, data);
 }
 
-__attribute__((unused))
-static void	render_debug2(t_mlx_container *data)
+static t_vertex_buffer	*get_buff(int x, int y, int z)
 {
 	t_vertex_buffer	*vb;
 
 	vb = malloc(sizeof(t_vertex_buffer));
 	vb->vertices_count = 8;
 	vb->vertices = malloc(sizeof(t_fdf_vertex) * vb->vertices_count);
-	vb->vertices[0].x = 63.;
-	vb->vertices[0].y = 63.;
-	vb->vertices[0].z = 63.;
-	vb->vertices[1].x = 63.;
-	vb->vertices[1].y = -63.;
-	vb->vertices[1].z = 63.;
-	vb->vertices[2].x = -63.;
-	vb->vertices[2].y = -63.;
-	vb->vertices[2].z = 63.;
-	vb->vertices[3].x = -63.;
-	vb->vertices[3].y = 63.;
-	vb->vertices[3].z = 63.;
-	vb->vertices[4].x = 63.;
-	vb->vertices[4].y = 63.;
-	vb->vertices[4].z = -63.;
-	vb->vertices[5].x = 63.;
-	vb->vertices[5].y = -63.;
-	vb->vertices[5].z = -63.;
-	vb->vertices[6].x = -63.;
-	vb->vertices[6].y = -63.;
-	vb->vertices[6].z = -63.;
-	vb->vertices[7].x = -63.;
-	vb->vertices[7].y = 63.;
-	vb->vertices[7].z = -63.;
+	vb->vertices[0].x = 63. + x;
+	vb->vertices[0].y = 63. + y;
+	vb->vertices[0].z = 63. + z;
+	vb->vertices[1].x = 63. + x;
+	vb->vertices[1].y = -63. + y;
+	vb->vertices[1].z = 63. + z;
+	vb->vertices[2].x = -63. + x;
+	vb->vertices[2].y = -63. + y;
+	vb->vertices[2].z = 63. + z;
+	vb->vertices[3].x = -63. + x;
+	vb->vertices[3].y = 63. + y;
+	vb->vertices[3].z = 63. + z;
+	vb->vertices[4].x = 63. + x;
+	vb->vertices[4].y = 63. + y;
+	vb->vertices[4].z = -63. + z;
+	vb->vertices[5].x = 63. + x;
+	vb->vertices[5].y = -63. + y;
+	vb->vertices[5].z = -63. + z;
+	vb->vertices[6].x = -63. + x;
+	vb->vertices[6].y = -63. + y;
+	vb->vertices[6].z = -63. + z;
+	vb->vertices[7].x = -63. + x;
+	vb->vertices[7].y = 63. + y;
+	vb->vertices[7].z = -63. + z;
 	vb->edges_count = 12;
 	vb->edges = (t_fdf_edge *)malloc(sizeof(t_fdf_edge) * vb->edges_count);
 	vb->edges[0].vertex1 = 0;
@@ -93,10 +92,22 @@ static void	render_debug2(t_mlx_container *data)
 	vb->edges[10].vertex2 = 6;
 	vb->edges[11].vertex1 = 3;
 	vb->edges[11].vertex2 = 7;
+	return (vb);
+}
+
+__attribute__((unused))
+static void	render_debug2(t_mlx_container *data)
+{
+	t_vertex_buffer	*vb;
 	t_vertex_buffer	*old;
+	vb = get_buff(0, 0, 0);
 	old = data->vb;
 	data->vb = vb;
-	printf("fuck %p %p\n", vb->vertices, data->vb->vertices);
+	fdf_vb_render(data);
+	data->vb = old;
+	vb = get_buff(130, 250, 0);
+	old = data->vb;
+	data->vb = vb;
 	fdf_vb_render(data);
 	data->vb = old;
 }

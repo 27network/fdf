@@ -6,7 +6,7 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 05:30:55 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/03 22:02:44 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/05 08:44:32 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int	fdf_wrap_mousewheel(int button, void *d)
 
 	data = (t_mlx_container *) d;
 	if (button == 2)
-		data->camera->focal_length -= 0.1;
+		data->camera->focal_length -= 5;
 	else if (button == 1)
-		data->camera->focal_length += 0.1;
+		data->camera->focal_length += 5;
 	else
 		return (0);
 	data->is_dirty = true;

@@ -6,16 +6,18 @@
 /*   By: kiroussa <oss@xtrm.me>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 11:22:37 by kiroussa          #+#    #+#             */
-/*   Updated: 2024/01/04 00:12:05 by kiroussa         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:05:53 by kiroussa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf/render/vertex.h>
 #include <fdf/render/minilibx.h>
 #include <fdf/error.h>
+#include <ft/math.h>
 #include <ft/mem.h>
 #include <ft/print.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * @note Credits: https://www.youtube.com/watch?v=hFRlnNci3Rs
@@ -37,14 +39,12 @@ static void	fdf_transform_vertex(
 	vertex->z *= 0.01;
 	if (focal_length + vertex->z == 0)
 		focal_length = 0.00001f;
-	x_projected = (focal_length * vertex->x);
-	x_projected /= focal_length + vertex->z;
-	y_projected = (focal_length * vertex->y);
-	y_projected /= focal_length + vertex->z;
+	x_projected = vertex->x * focal_length / (focal_length + vertex->z);
+	y_projected = vertex->y * focal_length / (focal_length + vertex->z);
+	x_projected += FDF_WINDOW_WIDTH / 2;
+	y_projected += FDF_WINDOW_HEIGHT / 2;
 	vertex->x = x_projected;
 	vertex->y = y_projected;
-	vertex->x += FDF_WINDOW_WIDTH / 2;
-	vertex->y += FDF_WINDOW_HEIGHT / 2;
 }
 
 static t_vertex_buffer	*fdf_vb_apply_transformations(t_mlx_container *data)
@@ -62,8 +62,8 @@ static t_vertex_buffer	*fdf_vb_apply_transformations(t_mlx_container *data)
 	count = 0;
 	while (count < new->vertices_count)
 	{
-		new->vertices[count].x -= width / 2.;
-		new->vertices[count].y -= height / 2.;
+		//new->vertices[count].x -= width / 2.;
+		//new->vertices[count].y -= height / 2.;
 		fdf_transform_vertex(
 			&(new->vertices[count]),
 			data->camera,
